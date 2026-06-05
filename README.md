@@ -7,12 +7,13 @@
 
 ## Table of Contents
 
-* [[#What Have I Built?]]
-* [[#Setup]]
-* [[#Procedure To Make It]]
-* [[#Running The Project]]
-* [[#Debugging]]
-* [[#Directory Structure]]
+* What Have I Built?
+* Setup
+* Procedure To Make It
+* Running The Project
+* Debugging
+* Directory Structure
+
 ## TL DR! use 'TL DR.md' file
 ---
 
@@ -24,8 +25,7 @@
 Normally ROS2 requires low-level commands:
 
 ```bash
-ros2 topic pub --once /left_leg_joint/cmd_vel \
-std_msgs/msg/Float64 "{data: 0.5}"
+ros2 topic pub --once /left_leg_joint/cmd_vel std_msgs/msg/Float64 "{data: 0.5}"
 ```
 
 This project allows:
@@ -80,7 +80,6 @@ Helpful video:
 
 https://www.youtube.com/watch?v=GTFPwJnb_fk
 
-> [!warning]
 > This video works in 2026. Fusion updates frequently break exporter plugins and workflows. If you are using a newer Fusion release, you may need to find an updated export workflow.
 
 <details>
@@ -116,7 +115,6 @@ Usually caused by:
 
 ## 2. Understanding The URDF Files
 
-> [!info]
 > URDF is needed for Gazebo to understand the robot structure and simulate physics.
 
 ### bot.xacro
@@ -258,10 +256,7 @@ At this stage your robot should already be controllable.
 Example:
 
 ```bash
-ros2 topic pub --once \
-/left_leg_joint/cmd_vel \
-std_msgs/msg/Float64 \
-"{data: 0.5}"
+ros2 topic pub --once /left_leg_joint/cmd_vel std_msgs/msg/Float64 "{data: 0.5}"
 ```
 
 By now you have effectively built a system where commands such as:
@@ -291,10 +286,7 @@ ros2 topic pub --once /right_leg_joint/cmd_vel ...
 you can use:
 
 ```bash
-ros2 topic pub --once \
-/high_level_nav_cmd \
-std_msgs/msg/String \
-"{data: 'slight left'}"
+ros2 topic pub --once /high_level_nav_cmd std_msgs/msg/String "{data: 'slight left'}"
 ```
 
 Gemini converts the command into the required joint actions.
@@ -317,16 +309,26 @@ Insert your Gemini API key.
 
 ---
 
-## Launch
+## Launch 
+
+Follow these steps to clone the repository, start the bot, and send your first natural language navigation command.
+
+### 1. Start the Bot
+Open your terminal and run the following commands to download the code and launch the main node:
 
 ```bash
-git clone <repo>
-
-cd <repo>
-
+git clone https://github.com/Amogh9341/Language-Action-Bot.git
+cd Language-Action-Bot
 ./run_bot_via_gemini.sh
 ```
+### 2. Send a Navigation Command
+To interact with the bot, you need to publish a command to its ROS 2 topic. Open a new terminal, ensure your ROS 2 environment is sourced (e.g., source /opt/ros/humble/setup.bash), and run:
+Bash
+```
+source /opt/ros/humble/setup.bash
 
+ros2 topic pub --once /high_level_nav_cmd std_msgs/msg/String "{data: 'slight left'}"
+```
 ---
 
 # Directory Structure
@@ -335,20 +337,28 @@ cd <repo>
 .
 ├── bot_description
 ├── config
+├── control_node.py
 ├── launch
 ├── meshes
-├── urdf
-├── control_node.py
+├── package.xml
+├── resource
+├── ros2_env
 ├── run_bot_via_gemini.sh
-└── ...
+├── setup.cfg
+├── setup.py
+├── test
+└── urdf
+    ├── bot.gazebo
+    ├── bot.ros2control
+    ├── bot.xacro
+    └── materials.xacro
 ```
 
 ---
 
 # Debugging
 
-> [!warning]
-> Most failures occur before Gemini is involved.
+> Warning : Most failures occur before Gemini is involved.
 
 Always debug from bottom to top.
 
@@ -478,5 +488,4 @@ Gemini
 Joint Commands
 ```
 
-> [!success]
-> At this point you have a robot that can be controlled using natural language rather than manually publishing commands to every individual joint.
+> Success : At this point you have a robot that can be controlled using natural language rather than manually publishing commands to every individual joint.
