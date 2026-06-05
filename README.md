@@ -1,6 +1,5 @@
-# Gemini Controlled Bot
+# Language to Action Bot
 
-> [!info]
 > Convert natural language instructions into robot actions inside ROS2 + Gazebo using Gemini.
 
 ---
@@ -31,8 +30,7 @@ ros2 topic pub --once /left_leg_joint/cmd_vel std_msgs/msg/Float64 "{data: 0.5}"
 This project allows:
 
 ```bash
-ros2 topic pub --once /high_level_nav_cmd \
-std_msgs/msg/String "{data: 'slight left'}"
+ros2 topic pub --once /high_level_nav_cmd std_msgs/msg/String "{data: 'slight left'}"
 ```
 
 The translation pipeline is:
