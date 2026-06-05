@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+<robot name="bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="body_color" value="silver" />
+
+  <!-- ==================== Gazebo Material & Physics Properties ==================== -->
+
+  <gazebo reference="base_link">
+    <material>${body_color}</material>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <self_collide>true</self_collide>
+    <gravity>true</gravity>
+  </gazebo>
+
+  <gazebo reference="right_wheel_1">
+    <material>${body_color}</material>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <self_collide>true</self_collide>
+  </gazebo>
+
+  <gazebo reference="right_leg_1">
+    <material>${body_color}</material>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <self_collide>true</self_collide>
+  </gazebo>
+
+  <gazebo reference="left_leg_1">
+    <material>${body_color}</material>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <self_collide>true</self_collide>
+  </gazebo>
+
+  <gazebo reference="left_wheel_1">
+    <material>${body_color}</material>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <self_collide>true</self_collide>
+  </gazebo>
+
+  <gazebo reference="support_wheel_1">
+    <material>${body_color}</material>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <self_collide>true</self_collide>
+  </gazebo>
+
+
+
+
+  <gazebo>
+    <plugin filename="gz-sim-joint-state-publisher-system"
+            name="gz::sim::systems::JointStatePublisher">
+      <joint_name>right_wheel_joint</joint_name>
+      <joint_name>left_wheel_joint</joint_name>
+      <joint_name>support_wheel_joint</joint_name>
+      <joint_name>right_leg_joint</joint_name>
+      <joint_name>left_leg_joint</joint_name>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <!-- Right Wheel -->
+    <plugin filename="gz-sim-joint-controller-system"
+            name="gz::sim::systems::JointController">
+      <joint_name>right_wheel_joint</joint_name>
+      <use_force_commands>false</use_force_commands>
+      <topic>/model/bot/joint/right_wheel_joint/cmd_vel</topic>
+    </plugin>
+
+    <!-- Left Wheel -->
+    <plugin filename="gz-sim-joint-controller-system"
+            name="gz::sim::systems::JointController">
+      <joint_name>left_wheel_joint</joint_name>
+      <use_force_commands>false</use_force_commands>
+      <topic>/model/bot/joint/left_wheel_joint/cmd_vel</topic>
+    </plugin>
+
+    <!-- Support Wheel -->
+    <plugin filename="gz-sim-joint-controller-system"
+            name="gz::sim::systems::JointController">
+      <joint_name>support_wheel_joint</joint_name>
+      <use_force_commands>false</use_force_commands>
+      <topic>/model/bot/joint/support_wheel_joint/cmd_vel</topic>
+    </plugin>
+  <!-- Right Leg -->
+    <plugin filename="gz-sim-joint-controller-system"
+            name="gz::sim::systems::JointController">
+      <joint_name>right_leg_joint</joint_name>
+      <use_force_commands>false</use_force_commands>
+      <topic>/model/bot/joint/right_leg_joint/cmd_vel</topic>
+    </plugin>
+
+    <!-- Left Leg -->
+    <plugin filename="gz-sim-joint-controller-system"
+            name="gz::sim::systems::JointController">
+      <joint_name>left_leg_joint</joint_name>
+      <use_force_commands>false</use_force_commands>
+      <topic>/model/bot/joint/left_leg_joint/cmd_vel</topic>
+    </plugin>
+
+  </gazebo>
+</robot>

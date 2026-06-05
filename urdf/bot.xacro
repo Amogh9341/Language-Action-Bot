@@ -1,0 +1,170 @@
+<?xml version="1.0" ?>
+<robot name="bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find bot_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find bot_description)/urdf/bot.ros2control" />
+<xacro:include filename="$(find bot_description)/urdf/bot.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="-0.17031808009976032 0.060000000000000234 0.245" rpy="0 0 0"/>
+    <mass value="195901.1654667005"/>
+    <inertia ixx="701360.370978" iyy="1422610.998802" izz="2115847.643096" ixy="-0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find bot_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find bot_description)/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin xyz="0.0 0.46999999999999975 5.828670879282072e-16" rpy="0 0 0"/>
+    <mass value="18642.55441809832"/>
+    <inertia ixx="7906.579199" iyy="15036.385298" izz="7906.579199" ixy="0.0" iyz="-0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="2.5325 3.69 -0.245" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find bot_description)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="2.5325 3.69 -0.245" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find bot_description)/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_leg_1">
+  <inertial>
+    <origin xyz="8.881784197001252e-15 0.5200000000000027 -1.1102230246251565e-16" rpy="0 0 0"/>
+    <mass value="30151.511444509568"/>
+    <inertia ixx="5113.491437" iyy="44451.730967" izz="44363.491437" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-3.4675 3.99 -0.245" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find bot_description)/meshes/right_leg_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-3.4675 3.99 -0.245" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find bot_description)/meshes/right_leg_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_leg_1">
+  <inertial>
+    <origin xyz="0.0 -0.5199999999999982 -1.1102230246251565e-16" rpy="0 0 0"/>
+    <mass value="30151.51144450955"/>
+    <inertia ixx="5113.491437" iyy="44451.730967" izz="44363.491437" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-3.4675 -4.11 -0.245" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find bot_description)/meshes/left_leg_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-3.4675 -4.11 -0.245" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find bot_description)/meshes/left_leg_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_wheel_1">
+  <inertial>
+    <origin xyz="0.0 -0.2699999999999987 -5.551115123125783e-16" rpy="0 0 0"/>
+    <mass value="18642.55441809832"/>
+    <inertia ixx="7906.579199" iyy="15036.385298" izz="7906.579199" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="2.5325 -3.61 -0.245" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find bot_description)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="2.5325 -3.61 -0.245" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find bot_description)/meshes/left_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="support_wheel_1">
+  <inertial>
+    <origin xyz="0.0 0.029583 -1.1102e-16" rpy="0 0 0"/>
+    <mass value="1.5"/>
+    <inertia ixx="0.0009" iyy="0.001" izz="0.0009" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  
+  <visual>
+    <origin xyz="-1.4675 -0.06 -0.245" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find bot_description)/meshes/support_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  
+  <collision>
+    <origin xyz="-1.4675 -0.06 -0.245" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="file://$(find bot_description)/meshes/support_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="right_wheel_joint" type="continuous">
+  <origin xyz="-2.5325 -3.69 0.245" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="right_leg_joint" type="continuous">
+  <origin xyz="3.4675 -3.99 0.245" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_leg_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="left_leg_joint" type="continuous">
+  <origin xyz="3.4675 4.11 0.245" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_leg_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="left_wheel_joint" type="continuous">
+  <origin xyz="-2.5325 3.61 0.245" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="support_wheel_joint" type="continuous">
+  <origin xyz="1.4675 0.06 0.245" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="support_wheel_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+</robot>
