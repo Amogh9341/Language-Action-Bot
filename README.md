@@ -18,7 +18,6 @@
 
 # What Have I Built?
 
-> [!abstract]
 > This project creates a language-to-action layer on top of ROS2.
 
 Normally ROS2 requires low-level commands:
